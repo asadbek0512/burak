@@ -13,4 +13,4 @@ function getPositive(arrey: number[]): number[] {   //buyerda qvuvusdan keyin nu
     return qiymat;
 }
 
-console.log("Musbat sonlar:", getPositive([1, -4, -2, 0]));
+console.log("Musbat sonlar: ", getPositive([1, -4, -2, 0]));
