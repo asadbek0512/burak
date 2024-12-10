@@ -3,14 +3,16 @@
 //faqat positive qiymatlarni olib string holatda return qilsin
 // MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 
-function getPositive(arrey: number[]): number[] {   //buyerda qvuvusdan keyin number[] qoyish shart yani: number[] — bu funksiya qaytaradigan qiymatning turini bildiradi. Bu funksiya faqat sonlar massivini qaytaradi.
+function getPositive(arrey: number[]) {
     let qiymat: number[] = [];  // buyerda bo'sh arrey berib ketyapmiz yani musbat sonlarni bo‘sh massivga qo‘shishimiz uchun
     for (let i = 0; i < arrey.length; i++) {
         if (arrey[i] >= 0) {
             qiymat.push(arrey[i]); // buyerda shart bajarilganda musbatni qiymat arreyiga push qiladi
         }
     }
-    return qiymat;
+    return qiymat.join("");
 }
 
 console.log("Musbat sonlar: ", getPositive([1, -4, -2, 0]));
+
+
