@@ -1,3 +1,14 @@
+/*   Project Standards:
+    - Logging standards
+    - Naming standards:
+        function, method, variable => CAMEL
+        class => PASCAL
+        folder => KEBAB
+        css => SNAKE
+    - Error handling
+*/
+
+
 //H-TASK: 
 // shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, 
 //faqat positive qiymatlarni olib string holatda return qilsin
@@ -31,3 +42,46 @@ function getDigits(son: string) {
 }
 
 console.log("result: ", getDigits("m14i1t"));
+
+
+// TASK I:
+// Shunday function tuzing, u parametrdagi array ichida eng ko'p
+// takrorlangan raqamni topib qaytarsin.
+// MASALAN: majorityElement([1, 2, 3, 4, 5, 4, 3, 4]); return 4
+// Yuqoridag misolda argument sifatida kiritilayotgan 
+// array tarkibida 4 soni ko'p takrorlanganligi uchun 4'ni return qilmoqda.
+// TASK I: 1-usul
+function majorityElement(arrey: number[]) {
+    let qiymat: number[] = [];
+    for (let i = 0; i < arrey.length; i++) {
+        if (arrey.filter(son => son === arrey[i]).length > (arrey.filter(son => son === (qiymat[0] || 0)).length || 0)) {
+            qiymat[0] = arrey[i];
+        }
+
+    }
+    return qiymat;
+}
+
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 5, 4]));
+
+// TASK I: 2-usul
+function majorityElement1(arrey: number[]) {
+    let qiymat = arrey[0];
+    let count = 0;
+
+    for (let i = 0; i < arrey.length; i++) {
+        if (arrey[i] === qiymat) {
+            count++;
+        } else {
+            count--;
+        }
+
+        if (count === 0) {
+            qiymat = arrey[i];
+            count = 1;
+        }
+    }
+    return qiymat;
+}
+
+console.log("Natija :", majorityElement1([1, 2, 3, 4, 5, 4, 3, 4]));  
