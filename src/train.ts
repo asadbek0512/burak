@@ -8,6 +8,14 @@
     - Error handling
 */
 
+/**
+    Tradition  API 
+    Rest API
+    GraphQL API
+    ....
+ */
+
+
 
 //H-TASK: 
 // shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, 
