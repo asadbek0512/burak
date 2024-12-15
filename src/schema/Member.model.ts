@@ -27,7 +27,7 @@ const memberSchema = new Schema(
             required: true,
         },
 
-        menubarPassword: {
+        memberPassword: {
             type: String,
             select: false,
             required: true,

@@ -1,5 +1,5 @@
 import MemberModel from "../schema/Member.model";
-import { Member, MemberInput } from "../libs/types/member";
+import { LoginInput, Member, MemberInput } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberType } from "../libs/enums/member.enum";
 
@@ -25,6 +25,24 @@ class MemberService {
         }
     }
 
+    public async processLogin(input: LoginInput): Promise<Member> {
+        const member = await this.memberModel
+            .findOne(
+                { memberNick: input.memberNick }, // Biz kiritgan memberNickga teng bo'lgan malumotni Databesedan qidirmoqda 
+                { memberNick: 1, memberPassword: 1 }
+            )
+            .exec();
+        if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+
+        const isMatch = input.memberPassword === member.memberPassword;
+        if (!isMatch) {
+            throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
+        }
+
+        return await this.memberModel.findOne(member._id).exec();
+    }
 }
+
+
 
 export default MemberService
