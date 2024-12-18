@@ -32,7 +32,7 @@ function getPositive(arrey: number[]) {
     return qiymat.join("");
 }
 
-console.log("Musbat sonlar: ", getPositive([1, -4, -2, 0]));
+console.log("H-TASK:", getPositive([1, -4, -2, 0]));
 
 // H2-TASK: 
 // Shunday function tuzing, unga string argument pass bolsin. 
@@ -49,7 +49,7 @@ function getDigits(son: string) {
     return qiymat;
 }
 
-console.log("result: ", getDigits("m14i1t"));
+console.log("H2-TASK:", getDigits("m14i1t"));
 
 
 // TASK I:
@@ -70,7 +70,7 @@ function majorityElement(arrey: number[]) {
     return qiymat;
 }
 
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 5, 4]));
+console.log("TASK I: 1-usul:", majorityElement([1, 2, 3, 4, 5, 4, 5, 4]));
 
 // TASK I: 2-usul
 function majorityElement1(arrey: number[]) {
@@ -92,4 +92,28 @@ function majorityElement1(arrey: number[]) {
     return qiymat;
 }
 
-console.log("Natija :", majorityElement1([1, 2, 3, 4, 5, 4, 3, 4]));  
+console.log("TASK I: 2-usul:", majorityElement1([1, 2, 3, 4, 5, 4, 3, 4]));
+
+
+
+// TASK J:
+// Shunday function tuzing, u string qabul qilsin.
+// Va string ichidagi eng uzun so'zni qaytarsin.
+// MASALAN: findLongestWord("I came from Uzbekistan!"); return "Uzbekistan!"
+// Yuqoridagi text tarkibida 'Uzbekistan'
+// eng uzun so'z bo'lganligi uchun 'Uzbekistan'ni qaytarmoqda
+
+function findLongestWord(word: string) {
+
+    const words = word.split(" ")
+    let longestWord = "";
+
+    for (let i = 0; i < words.length; i++) {
+        if (words[i].length > longestWord.length) {
+            longestWord = words[i];
+        }
+    }
+    return longestWord;
+}
+
+console.log("TASK J:", findLongestWord("I came from Uzbekistan!"));

@@ -5,8 +5,8 @@ import restaurantController from "./controllers/restaurant.controller";
 /* Restaurant */
 routerAdmin.get("/", restaurantController.goHome);
 routerAdmin
-    .get("/login", restaurantController.getLogin)
-    .post("/login", restaurantController.processLogin);
+    .get("/login", restaurantController.getLogin) // get serverga malumot olib kiradi
+    .post("/login", restaurantController.processLogin);// serverdan databasega olib kiradi
 routerAdmin
     .get("/signup", restaurantController.getSignup)
     .post("/signup", restaurantController.processSignup);
