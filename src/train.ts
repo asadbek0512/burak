@@ -15,7 +15,10 @@
     ....
  */
 
-
+/*
+    Traditional FD  => SSR => EJS
+    Modern FD       => SPA => REACT
+ */
 
 //H-TASK: 
 // shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, 

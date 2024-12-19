@@ -10,8 +10,7 @@ const restaurantController: T = {};
 restaurantController.goHome = (req: Request, res: Response) => {
     try {
         console.log('goHome');
-        res.send("Home Page");
-        // send | json | redirect | render 
+        res.render("home");
     } catch (err) {
         console.log("Error, goHome:", err);
     }
@@ -20,7 +19,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
 restaurantController.getSignup = (req: Request, res: Response) => {
     try {
         console.log('getSignup');
-        res.send("Signup Page");
+        res.render("signup")
     } catch (err) {
         console.log("Error, getSignup:", err);
     }
@@ -29,10 +28,9 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 restaurantController.getLogin = (req: Request, res: Response) => {
     try {
         console.log('getLogin');
-        res.send("Login Page");
+        res.render("login")
     } catch (err) {
         console.log("Error, getLogin:", err);
-        res.send(err);
     }
 };
 
@@ -42,8 +40,8 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
 
         const newMember: MemberInput = req.body;
         newMember.memberType = MemberType.RESTAURANT;
-
         const result = await memberService.processSignup(newMember);
+        //TODO: SESSIONS AUTHENTICATION
 
         res.send(result);
     } catch (err) {
@@ -57,7 +55,8 @@ restaurantController.processLogin = async (req: Request, res: Response) => {
         console.log('processLogin');
 
         const input: LoginInput = req.body;
-        const result = await memberService.processLogin(input)
+        const result = await memberService.processLogin(input);
+        //TODO: SESSIONS AUTHENTICATION
 
         res.send(result);
     } catch (err) {

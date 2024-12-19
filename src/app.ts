@@ -15,7 +15,7 @@ app.use(morgan(MORGAN_FORMAT))
 /** 2-SESSIONS **/
 
 /** 3-VIEWS **/
-app.set("viewsa", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs"); // ejs farmatda render qilishini 
 
 /** 4-ROUTERS **/
