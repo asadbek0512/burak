@@ -95,7 +95,6 @@ function majorityElement1(arrey: number[]) {
 console.log("TASK I: 2-usul:", majorityElement1([1, 2, 3, 4, 5, 4, 3, 4]));
 
 
-
 // TASK J:
 // Shunday function tuzing, u string qabul qilsin.
 // Va string ichidagi eng uzun so'zni qaytarsin.
@@ -105,15 +104,15 @@ console.log("TASK I: 2-usul:", majorityElement1([1, 2, 3, 4, 5, 4, 3, 4]));
 
 function findLongestWord(word: string) {
 
-    const words = word.split(" ")
-    let longestWord = "";
+    const words = word.split(" ") // bu yerda stringni arrayga aylantiradi, har bir so'z alohida element bo'ladi.
+    let longestWord = ""; // Eng uzun so'zni saqlash uchun o'zgaruvchi yaratilyapti
 
     for (let i = 0; i < words.length; i++) {
-        if (words[i].length > longestWord.length) {
+        if (words[i].length > longestWord.length) { //Agar hozirgi so'z uzunroq bo'lsa, longestWord qiymati yangilanadi
             longestWord = words[i];
         }
     }
     return longestWord;
 }
 
-console.log("TASK J:", findLongestWord("I came from Uzbekistan!"));
+console.log("TASK J:", findLongestWord("I came from Uzbekistan !"));
