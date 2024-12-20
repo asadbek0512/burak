@@ -31,7 +31,7 @@ class MemberService {
         // TODO: Consider member status later
         const member = await this.memberModel
             .findOne(
-                { memberNick: input.memberNick },
+                { memberNick: input.memberNick }, //Biz kiritgan memberNickga teng bo'lgan malumotni Databesedan qidirmoqda 
                 { memberNick: 1, memberPassword: 1 }
             )
             .exec();
@@ -45,7 +45,7 @@ class MemberService {
             throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
         }
 
-        return await this.memberModel.findById(member._id).lean().exec();
+        return await this.memberModel.findById(member._id).lean().exec();// .lean() => dadabasedan olingan memberni o'zgartirish imkonyatiga ega bo'lamiz
     }
 
     /**SSR */
@@ -86,7 +86,7 @@ class MemberService {
             throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
         }
 
-        return await this.memberModel.findById(member._id).exec();// id nega qoyilyapti ? 
+        return await this.memberModel.findById(member._id).exec();
     }
 }
 
