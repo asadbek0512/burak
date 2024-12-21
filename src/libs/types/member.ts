@@ -29,6 +29,7 @@ export interface MemberInput { /// Dataga kiradigan malumot
     memberImage?: string;
     memberPoints?: string;
 }
+
 export interface LoginInput {
     memberNick: string;
     memberPassword: string;
