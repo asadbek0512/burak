@@ -8,7 +8,7 @@
     - Error handling
 */
 
-/**
+/*
     Tradition  API 
     Rest API
     GraphQL API
@@ -19,6 +19,13 @@
     Traditional FD  => SSR => EJS
     Modern FD       => SPA => REACT
  */
+
+/*
+    request join
+    self destroy
+*/
+
+
 
 //H-TASK: 
 // shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, 
@@ -119,3 +126,25 @@ function findLongestWord(word: string) {
 }
 
 console.log("TASK J:", findLongestWord("I came from Uzbekistan !"));
+
+
+// TASK K:
+// Berilayotgan parametr tarkibida nechta unli harf bor
+// ekanligini aniqlovchi function tuzing
+// MASALAN: countVowels("string"); return 1
+// Yuqoridagi misolda 'string' so'zi tarkibida yagona unli harf 'i'
+// bo'lganligi uchun '1'ni qaytarmoqda
+
+function countVowels(word: string): number {
+    const unli = ['a', 'e', 'i', 'o', 'u'];
+    let count: number = 0;
+
+    for (let i = 0; i < word.length; i++) {
+        if (unli.includes(word[i])) { // .includes() ni massiv yoki satrda biror elementni borligini tekshirish uchun ishlatamiz.
+            count++;
+        }
+    }
+    return count;
+}
+
+console.log("TASK K: ", countVowels("Abdukarim"));
