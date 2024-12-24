@@ -7,6 +7,7 @@ import { MORGAN_FORMAT } from "./libs/config";
 
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
+import { T } from "./libs/types/common";
 
 const MongoDBStore = ConnectMongoDB(session);   //connect-mongodb-session va express-session modullarini birlashtirib, class yaratayapti
 const store = new MongoDBStore({                //bu klassdan obyekt yaratib MongoDBStore orqali sessiya ma'lumotlarini saqlash uchun konfiguratsiya qilinadi.
@@ -19,7 +20,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan(MORGAN_FORMAT))
+app.use(morgan(MORGAN_FORMAT));
 
 /** 2-SESSIONS **/
 app.use(          // Sessiyalarni barcha foydalanuvchi so‘rovlarida boshqarish uchun middleware qo‘shiladi.
@@ -33,6 +34,11 @@ app.use(          // Sessiyalarni barcha foydalanuvchi so‘rovlarida boshqarish
         saveUninitialized: true//?      // 
     })
 );
+app.use(function (req, res, next) {
+    const sessionInstance = req.session as T;
+    res.locals.member = sessionInstance.member;
+    next();
+})
 
 /** 3-VIEWS **/
 app.set("views", path.join(__dirname, "views"));

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/enums/member.enum";
@@ -62,7 +62,9 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
     }
 };
 
-restaurantController.processLogin = async (req: AdminRequest, res: Response) => {
+restaurantController.processLogin = async (
+    req: AdminRequest,
+    res: Response) => {
     try {
         console.log('processLogin');
 
@@ -83,8 +85,9 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
     }
 };
 
-
-restaurantController.logout = async (req: AdminRequest, res: Response) => {
+restaurantController.logout = async (
+    req: AdminRequest,
+    res: Response) => {
     try {
         console.log('logout');
         req.session.destroy(function () { // sessiyani yo'q qilish uchun ishlatiladi.
@@ -96,7 +99,9 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
     }
 };
 
-restaurantController.checkAuthSession = async (req: AdminRequest, res: Response) => {
+restaurantController.checkAuthSession = async (
+    req: AdminRequest,
+    res: Response) => {
     try {
         console.log('checkAuthSession');
         if (req.session.member) //  req (so‘rov) obyekti ichidagi sessiya ma’lumotlarin borligini va member ega ekanligini tekshiradi.
@@ -106,6 +111,22 @@ restaurantController.checkAuthSession = async (req: AdminRequest, res: Response)
     } catch (err) {
         console.log("Error, checkAuthSession:", err);
         res.send(err);
+    }
+};
+
+restaurantController.verifyRestaurant = (
+    req: AdminRequest,
+    res: Response,
+    next: NextFunction
+) => {
+    if (req.session?.member?.memberType === MemberType.RESTAURANT) {
+        req.member = req.session.member;
+        next();
+    } else {
+        const message = Message.NOT_AUTHENTCATED;
+        res.send(
+            `<script> alert("${message}"); window.location.replace('/admin/login') </script>`
+        );
     }
 };
 
