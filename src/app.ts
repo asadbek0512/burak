@@ -8,10 +8,10 @@ import { MORGAN_FORMAT } from "./libs/config";
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
 
-const MongoDBStore = ConnectMongoDB(session);
-const store = new MongoDBStore({
+const MongoDBStore = ConnectMongoDB(session);   //connect-mongodb-session va express-session modullarini birlashtirib, class yaratayapti
+const store = new MongoDBStore({                //bu klassdan obyekt yaratib MongoDBStore orqali sessiya ma'lumotlarini saqlash uchun konfiguratsiya qilinadi.
     uri: String(process.env.MONGO_URL),
-    collection: 'sessions',
+    collection: 'sessions',            //Sessiyalarni saqlash uchun sessions nomli MongoDB kolleksiyasi belgilanadi.
 });
 
 /** 1-ENTRANCE **/
@@ -22,15 +22,15 @@ app.use(express.json());
 app.use(morgan(MORGAN_FORMAT))
 
 /** 2-SESSIONS **/
-app.use(
-    session({
-        secret: String(process.env.SESSION_SECRET),
+app.use(          // Sessiyalarni barcha foydalanuvchi so‘rovlarida boshqarish uchun middleware qo‘shiladi.
+    session({     //  express-session Modulining  funksiyasi orqali  sessiya boshqaruvini sozlash uchun ishlatiladi. 
+        secret: (process.env.SESSION_SECRET as string), // Sessiyani himoya qilish uchun maxfiy kalit.
         cookie: {
             maxAge: 1000 * 3600 * 3 // 3h
         },
-        store: store,
-        resave: true,
-        saveUninitialized: true
+        store: store,                   // Sessiyalarni MongoDB da saqlash.
+        resave: true,                   // Har bir so‘rovda sessiyani qayta saqlaydi.
+        saveUninitialized: true//?      // 
     })
 );
 

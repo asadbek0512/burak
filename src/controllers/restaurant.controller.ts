@@ -46,9 +46,10 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
         newMember.memberType = MemberType.RESTAURANT;
         const result = await memberService.processSignup(newMember);
 
-        req.session.member = result;
-        req.session.save(function () {
-            res.send(result);
+        req.session.member = result;  //?
+        req.session.save(function () { // Ro‘yxatdan o‘tgan foydalanuvchi ma’lumotlari req.session.member: sessiya ichi saqlanadi.
+            res.send(result);  // Sessiya muvaffaqiyatli saqlangach, result foydalanuvchiga jo‘natiladi.
+
         });
 
     } catch (err) {
@@ -68,7 +69,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
         const input: LoginInput = req.body;
         const result = await memberService.processLogin(input);
 
-        req.session.member = result;
+        req.session.member = result;    // Bu jarayon ikkita narsani amalga oshiryapti Cookiesni ichiga tipni(conecton sidni) joylayapti va databsega borib sessions collection member malumotni saqlayotgan ekan
         req.session.save(function () {
             res.send(result);
         });
@@ -86,19 +87,20 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
 restaurantController.logout = async (req: AdminRequest, res: Response) => {
     try {
         console.log('logout');
-        req.session.destroy(function () {
+        req.session.destroy(function () { // sessiyani yo'q qilish uchun ishlatiladi.
             res.redirect("/admin");
         })
     } catch (err) {
         console.log("Error, logout:", err);
-        res.redirect("/admin");
+        res.redirect("/admin");  // Sessiya yo'q qilingandan keyin foydalanuvchini /admin sahifasiga yo'naltiradi.
     }
 };
 
 restaurantController.checkAuthSession = async (req: AdminRequest, res: Response) => {
     try {
         console.log('checkAuthSession');
-        if (req.session?.member)
+        if (req.session.member) //  req (so‘rov) obyekti ichidagi sessiya ma’lumotlarin borligini va member ega ekanligini tekshiradi.
+
             res.send(`<script> alert(" ${req.session.member.memberNick}") </script>`);
         else res.send(`<script> alert("${Message.NOT_AUTHENTCATED}") </script>`);
     } catch (err) {
