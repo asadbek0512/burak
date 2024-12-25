@@ -38,4 +38,6 @@ export interface LoginInput {
 export interface AdminRequest extends Request {
     member: Member;
     session: Session & { member: Member }
+    file: Express.Multer.File;   //// Bu yerda req ichidagi fileni typeni ko'rsatayapmiz
+    files: Express.Multer.File[];
 }

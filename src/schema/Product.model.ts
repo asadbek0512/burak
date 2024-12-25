@@ -26,7 +26,7 @@ const productSchema = new Schema(
         },
 
         productPrice: {
-            type: String,
+            type: Number,
             required: true,
         },
 
@@ -49,7 +49,6 @@ const productSchema = new Schema(
 
         productDesc: {
             type: String,
-            required: true,
         },
 
         productImages: {
