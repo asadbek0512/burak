@@ -8,22 +8,30 @@
     - Error handling
 */
 
-/*
+/*   Request:
     Tradition  API 
     Rest API
     GraphQL API
     ....
  */
 
-/*
-    Traditional FD  => SSR => EJS
-    Modern FD       => SPA => REACT
+/*   Frontend Development:
+    Traditional FD  =>  SSR     =>   EJS
+    Modern FD       =>  SPA     =>  REACT
  */
 
-/*
+/*   Cookies:
     request join
     self destroy
 */
+
+/*  Validation:
+    Frontend validation
+    Backend validation
+    Database validation
+*/
+
+
 
 
 //H-TASK: 
@@ -41,7 +49,7 @@ function getPositive(arrey: number[]) {
     return qiymat.join("");
 }
 
-console.log("H-TASK:", getPositive([1, -4, -2, 0]));
+// console.log("H-TASK:", getPositive([1, -4, -2, 0]));
 
 // H2-TASK: 
 // Shunday function tuzing, unga string argument pass bolsin. 
@@ -58,7 +66,7 @@ function getDigits(son: string) {
     return qiymat;
 }
 
-console.log("H2-TASK:", getDigits("m14i1t"));
+// console.log("H2-TASK:", getDigits("m14i1t"));
 
 
 // TASK I:
@@ -79,7 +87,7 @@ function majorityElement(arrey: number[]) {
     return qiymat;
 }
 
-console.log("TASK I: 1-usul:", majorityElement([1, 2, 3, 4, 5, 4, 5, 4]));
+// console.log("TASK I: 1-usul:", majorityElement([1, 2, 3, 4, 5, 4, 5, 4]));
 
 // TASK I: 2-usul
 function majorityElement1(arrey: number[]) {
@@ -101,7 +109,7 @@ function majorityElement1(arrey: number[]) {
     return qiymat;
 }
 
-console.log("TASK I: 2-usul:", majorityElement1([1, 2, 3, 4, 5, 4, 3, 4]));
+// console.log("TASK I: 2-usul:", majorityElement1([1, 2, 3, 4, 5, 4, 3, 4]));
 
 
 // TASK J:
@@ -124,7 +132,7 @@ function findLongestWord(word: string) {
     return longestWord;
 }
 
-console.log("TASK J:", findLongestWord("I came from Uzbekistan !"));
+// console.log("TASK J:", findLongestWord("I came from Uzbekistan !"));
 
 
 // TASK K:
@@ -146,4 +154,33 @@ function countVowels(word: string): number {
     return count;
 }
 
-console.log("TASK K: ", countVowels("Abdukarim"));
+// console.log("TASK K: ", countVowels("Abdukarim"));
+
+
+// TASK L:
+// So'zlarni ketma - ketligini buzmasdan har bir so'zni
+// alohida teskarisiga o'girib beradigan fucntion tuzing.
+// Funtion yagona string qabul qilsin
+// MASALAN: reverseSentence("we like coding!") return "ew ekil !gnidoc";
+// Qaytayotgan natijaga e'tibor bersangiz, so'zlar joyi o'zgarmasdan turgan o'rnida teskarisiga o'girilmoqda
+
+// 1-usul
+function reverseSentence(word: string) {
+
+    const words = word.split(" ")
+    let result = words.map(word => word.split('').reverse().join(''));
+
+    return result.join(" ");
+}
+console.log("TASK L: ", reverseSentence("we like coding!"));
+
+// 2-usul
+function reverseSentence1(word: string) {
+    const words = word.split(" ");
+    let result: string[] = [];
+    for (let i = 0; i < words.length; i++) {
+        result.push(words[i].split('').reverse().join(''));
+    }
+    return result.join(" ");
+}
+console.log("TASK L: ", reverseSentence1("we like coding!"));
