@@ -3,7 +3,7 @@ import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/enums/member.enum";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
-import { Message } from "../libs/Errors";
+import Errors, { HttpCode, Message } from "../libs/Errors";
 
 const memberService = new MemberService()
 
@@ -41,17 +41,19 @@ restaurantController.getLogin = (req: Request, res: Response) => {
 restaurantController.processSignup = async (req: AdminRequest, res: Response) => {
     try {
         console.log('processSignup');
+        const file = req.file; // multer yuklab berib prossessignup yubroryapti va biz req.file ichidan qabul qilyapmiz
+        if (!file)
+            throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
         const newMember: MemberInput = req.body;
+        newMember.memberImage = file?.path; // buyerga provayt qilyapmiz
         newMember.memberType = MemberType.RESTAURANT;
         const result = await memberService.processSignup(newMember);
 
-        req.session.member = result;  //?
+        req.session.member = result;  //
         req.session.save(function () { // Ro‘yxatdan o‘tgan foydalanuvchi ma’lumotlari req.session.member: sessiya ichi saqlanadi.
-            res.send(result);  // Sessiya muvaffaqiyatli saqlangach, result foydalanuvchiga jo‘natiladi.
-
+            res.redirect("/admin/product/all");
         });
-
     } catch (err) {
         console.log("Error, processSignup:", err);
         const message =
@@ -71,9 +73,9 @@ restaurantController.processLogin = async (
         const input: LoginInput = req.body;
         const result = await memberService.processLogin(input);
 
-        req.session.member = result;    // Bu jarayon ikkita narsani amalga oshiryapti Cookiesni ichiga tipni(conecton sidni) joylayapti va databsega borib sessions collection member malumotni saqlayotgan ekan
-        req.session.save(function () {
-            res.send(result);
+        req.session.member = result;    // Bu jarayon ikkita narsani amalga oshiryapti Cookiesni ichiga tipni(conecton sidni) joylayapti 
+        req.session.save(function () { // va databsega borib sessions collection member malumotni saqlayotgan ekan
+            res.redirect("/admin/product/all");
         });
     } catch (err) {
         console.log("Error, processLogin:", err);
@@ -113,13 +115,13 @@ restaurantController.checkAuthSession = async (
         res.send(err);
     }
 };
-
+//foydalanuvchi kim ekanligini aniqlab beradi va restaurand user ekanligini aniqlab beradi
 restaurantController.verifyRestaurant = (
     req: AdminRequest,
     res: Response,
     next: NextFunction
 ) => {
-    if (req.session?.member?.memberType === MemberType.RESTAURANT) {
+    if (req.session?.member?.memberType === MemberType.RESTAURANT) {// requsning ichidan kelayotgan sessionimizni ichidan menberni tekshiramiz va o'sha taypei Restarand bo'lishi kerak
         req.member = req.session.member;
         next();
     } else {

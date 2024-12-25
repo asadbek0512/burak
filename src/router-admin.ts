@@ -22,7 +22,7 @@ routerAdmin.get("/check-me", restaurantController.checkAuthSession);
 /** Product */
 routerAdmin.get(
     "/product/all",
-    restaurantController.verifyRestaurant,
+    restaurantController.verifyRestaurant, // midelwear yani oraliq mantiq
     productController.getAllProducts
 );
 routerAdmin.post(
