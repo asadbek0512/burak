@@ -184,3 +184,27 @@ function reverseSentence1(word: string) {
     return result.join(" ");
 }
 console.log("TASK L: ", reverseSentence1("we like coding!"));
+
+// TASK M:
+// Shunday function tuzing, u raqamlardan tashkil topgan array qabul qilsin
+// va array ichidagi har bir raqam uchun raqamning o'zi va hamda o'sha raqamni kvadratidan
+// tashkil topgan object hosil qilib, hosil bo'lgan objectlarni array ichida qaytarsin
+// MASALAN: MASALAN: getSquareNumbers([1, 2, 3]) 
+// return [{ number: 1, square: 1 }, { number: 2, square: 4 }, { number: 3, square: 9 }];
+
+function getSquareNumbers(numbers: number[]) {
+    const Natija = [];
+
+    for (let i = 0; i < numbers.length; i++) {
+        const number: number = numbers[i];
+
+        Natija.push({
+            number: number,
+            square: number * number,
+        });
+    }
+    return Natija;
+}
+
+console.log("TASK M: ", getSquareNumbers([1, 2, 3]));
+
