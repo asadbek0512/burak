@@ -106,7 +106,7 @@ restaurantController.checkAuthSession = async (
     res: Response) => {
     try {
         console.log('checkAuthSession');
-        if (req.session.member) //  req (so‘rov) obyekti ichidagi sessiya ma’lumotlarin borligini va member ega ekanligini tekshiradi.
+        if (req.session?.member) //  req (so‘rov) obyekti ichidagi sessiya ma’lumotlarin borligini va member ega ekanligini tekshiradi.
 
             res.send(`<script> alert(" ${req.session.member.memberNick}") </script>`);
         else res.send(`<script> alert("${Message.NOT_AUTHENTCATED}") </script>`);
