@@ -172,7 +172,7 @@ function reverseSentence(word: string) {
 
     return result.join(" ");
 }
-console.log("TASK L: ", reverseSentence("we like coding!"));
+// console.log("TASK L: ", reverseSentence("we like coding!"));
 
 // 2-usul
 function reverseSentence1(word: string) {
@@ -183,7 +183,7 @@ function reverseSentence1(word: string) {
     }
     return result.join(" ");
 }
-console.log("TASK L: ", reverseSentence1("we like coding!"));
+// console.log("TASK L: ", reverseSentence1("we like coding!"));
 
 // TASK M:
 // Shunday function tuzing, u raqamlardan tashkil topgan array qabul qilsin
@@ -206,5 +206,27 @@ function getSquareNumbers(numbers: number[]) {
     return Natija;
 }
 
-console.log("TASK M: ", getSquareNumbers([1, 2, 3]));
+// console.log("TASK M: ", getSquareNumbers([1, 2, 3]));
 
+// TASK N:
+// Parametr sifatida yagona string qabul qiladigan function tuzing.
+// Va bu function string'ni palindrom so'z yoki palindrom so'z emasligini aniqlab (boolean)
+// 'true' yokida 'false' qaytarsin.
+// MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false;
+// Birinchi misolda 'dad' so'zini ikkala tarafdan o'qilganda ham bir xil ma'noni beradi (true)
+// Ikkinchi misolda 'son' so'zini ikkala tarafdan o'qilganda bir xil ma'noni bermaydi (false)
+// *Palindrom so'z deb o'ngdan chapga ham ~ chapdan o'ngga ham o'qilganda
+// bir xil ma'noni beradigan so'zga aytiladi
+
+
+function palindromCheck(word: string) {
+    const words: string = word.split('').reverse().join('');
+    if (words === word) {
+        console.log(`true - ${word}`)
+        return true
+    } else
+        console.log(`false - ${words}`);
+    return false
+}
+
+console.log(palindromCheck("dad"));
