@@ -23,7 +23,7 @@ class ProductService {
 
     public async createNewProduct(input: ProductInput): Promise<Product> {
         try {
-            return await this.productModel.create(input); //?? buyerda nega exec() qoyilmagan  veribelga tenglamaganimiz sabablimi?
+            return await this.productModel.create(input);
         } catch (err) {
             console.error("Error, model:creatNewProduct:");
             throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
@@ -35,14 +35,11 @@ class ProductService {
         input: ProductUpdateInput
     ): Promise<Product> {
         //string => objectid
-        id = shapeIntoMongooseObjectId(id);
+        id = shapeIntoMongooseObjectId(id)// ??buni o'chirib qoysaham ishlaverr ekan nega 
         const result = await this.productModel
             .findByIdAndUpdate({ _id: id }, input, { new: true })
             .exec();
-
         if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-
-        console.log("result: ", result);
         return result;
     }
 

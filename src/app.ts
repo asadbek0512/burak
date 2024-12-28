@@ -31,14 +31,14 @@ app.use(          // Sessiyalarni barcha foydalanuvchi so‘rovlarida boshqarish
         },
         store: store,                   // Sessiyalarni MongoDB da saqlash.
         resave: true,                   // Har bir so‘rovda sessiyani qayta saqlaydi.
-        saveUninitialized: true//?      // 
+        saveUninitialized: true      // 
     })
 );
-app.use(function (req, res, next) {
+app.use(function (req, res, next) { // ???? 
     const sessionInstance = req.session as T;
     res.locals.member = sessionInstance.member;
     next();
-})
+});
 
 /** 3-VIEWS **/
 app.set("views", path.join(__dirname, "views"));

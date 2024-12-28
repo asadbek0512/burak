@@ -42,6 +42,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
     try {
         console.log('processSignup');
         const file = req.file; // multer yuklab berib prossessignup yubroryapti va biz req.file ichidan qabul qilyapmiz
+        console.log("file:", file)
         if (!file)
             throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
@@ -100,6 +101,27 @@ restaurantController.logout = async (
         res.redirect("/admin");  // Sessiya yo'q qilingandan keyin foydalanuvchini /admin sahifasiga yo'naltiradi.
     }
 };
+
+restaurantController.getUsers = async (req: Request, res: Response) => {
+    try {
+        console.log('getUser');
+        const result = await memberService.getUsers() // buyuerda hech narsa push qilmayapti lekin qanday schema modulga o'tayapti
+
+        res.render("users", { users: result });
+    } catch (err) {
+        console.log("Error, getUser:", err);
+        res.redirect("/admin/login");
+    }
+};
+
+restaurantController.updateChosenUser = (req: Request, res: Response) => {
+    try {
+        console.log('getUser');
+    } catch (err) {
+        console.log("Error, getUser:", err);
+    }
+};
+
 
 restaurantController.checkAuthSession = async (
     req: AdminRequest,

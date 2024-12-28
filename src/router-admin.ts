@@ -27,7 +27,7 @@ routerAdmin.get(
 );
 routerAdmin.post(
     "/product/create",
-    restaurantController.verifyRestaurant,
+    restaurantController.verifyRestaurant,// ozoruzeshin
     makeUploader("products").array("productImages", 5),
     productController.createNewProduct
 );
@@ -38,5 +38,6 @@ routerAdmin.post(
 );
 
 /** User */
+routerAdmin.get("/user/all", restaurantController.verifyRestaurant, restaurantController.getUsers);
 
 export default routerAdmin;

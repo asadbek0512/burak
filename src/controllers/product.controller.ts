@@ -24,7 +24,6 @@ productController.getAllProducts = async (req: Request, res: Response) => {
 productController.createNewProduct = async (req: AdminRequest, res: Response) => {
     try {
         console.log('createNewProduct');
-        console.log("req.filees:", req.files)       // ?? files qayerdan keldib qoldi? interface ProductInput image  majburiy emas deyilgan? 
         if (!req.files?.length)                     // ??  buyerda eng kamida 1 ta rasim qoyish kerak deyilyapti lekin 
             throw new Errors(HttpCode.INTERNAL_SERVER_ERROR, Message.CREATE_FAILED);
 
@@ -55,7 +54,7 @@ productController.updateChosenProduct = async (req: Request, res: Response) => {
 
         const result = await productService.updateChosenProduct(id, req.body);
 
-        res.status(HttpCode.OK).json({ data: result });
+        res.status(HttpCode.CREATED).json({ data: result });
     } catch (err) {
         console.log("Error, updateChosenProduct:", err);
         if (err instanceof Errors) res.status(err.code).json(err);
