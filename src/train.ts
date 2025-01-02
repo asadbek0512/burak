@@ -32,8 +32,6 @@
 */
 
 
-
-
 //H-TASK: 
 // shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, 
 //faqat positive qiymatlarni olib string holatda return qilsin
@@ -230,3 +228,26 @@ function palindromCheck(word: string) {
 }
 
 console.log(palindromCheck("dad"));
+
+
+// TASK O:
+// Shunday function yozing va u har xil qiymatlardan iborat array qabul qilsin.
+// Va array ichidagi sonlar yig'indisini hisoblab chiqgan javobni qaytarsin
+// MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]); return 45
+// Yuqoridagi misolda array tarkibida faqatgina ikkita yagona son mavjud bular 10 hamda 35
+// Qolganlari nested bo'lib yoki type'lari number emas.
+
+function calculateSumOfNumbers(raqam: any) {
+    let sum: number = 0;
+    for (let i = 0; i < raqam.length; i++) {
+        if (typeof raqam[i] === "number") {
+            sum += raqam[i];
+        }
+    }
+    return sum;
+}
+
+const result = calculateSumOfNumbers([10, "10", { son: 10 }, false, 35])
+console.log("TASK O:", result);
+
+
