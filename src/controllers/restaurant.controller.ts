@@ -41,6 +41,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
 restaurantController.processSignup = async (req: AdminRequest, res: Response) => {
     try {
         console.log('processSignup');
+        console.log("req.body:",req.body);
         const file = req.file; // multer yuklab berib prossessignup yubroryapti va biz req.file ichidan qabul qilyapmiz
         console.log("file:", file)
         if (!file)
