@@ -106,7 +106,8 @@ restaurantController.logout = async (
 restaurantController.getUsers = async (req: Request, res: Response) => {
     try {
         console.log('getUser');
-        const result = await memberService.getUsers() // buyuerda hech narsa push qilmayapti lekin qanday schema modulga o'tayapti
+        const result = await memberService.getUsers()
+        console.log("result:", result);
 
         res.render("users", { users: result });
     } catch (err) {
