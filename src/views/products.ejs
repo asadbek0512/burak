@@ -68,7 +68,6 @@
                     </select>
                   </td>
                 </tbody>
-
                 <% }) %>
                   <!--  LOOP PRODUCTS: END  -->
             </table>
@@ -78,7 +77,7 @@
               </button>
             </div>
           </div>
-          <form action="/admin/product/create" method="POST" class="dish-container" enctype="multipart/form-data">
+          <form onsubmit="return validateForm()" action="/admin/product/create" method="POST" class="dish-container" enctype="multipart/form-data">
             <div class="long-input" style="display: flex; align-items: center">
               <span class="new-dish-txt">NEW PRODUCT DETAIL</span>
             </div>
@@ -142,25 +141,25 @@
               <div class="media-frame">
                 <div class="upload-img-box">
                   <img src="/img/upload.svg" class="1" id="image-section-1" />
-                  <input type="file" id="file" name="productImages" class="image-one" required />
+                  <input type="file" id="file" name="productImages" class="image-one" required onchange="previewFileHendler(this, 1)" />
                 </div>
                 <div class="upload-img-box">
                   <img src="/img/upload.svg" class="2" id="image-section-2" />
-                  <input type="file" id="file" name="productImages" class="image-two" />
+                  <input type="file" id="file" name="productImages" class="image-two" onchange="previewFileHendler(this, 2)" />
                 </div>
                 <div class="upload-img-box">
                   <img src="/img/upload.svg" class="3" id="image-section-3" />
-                  <input type="file" id="file" name="productImages" class="image-three" />
+                  <input type="file" id="file" name="productImages" class="image-three" onchange="previewFileHendler(this, 3)" />
                 </div>
                 <div class="upload-img-box">
                   <img src="/img/upload.svg" class="4" id="image-section-4" />
-                  <input type="file" id="file" name="productImages" class="image-four" />
+                  <input type="file" id="file" name="productImages" class="image-four" onchange="previewFileHendler(this, 4)" />
                 </div>
                 <div class="upload-img-box">
                   <img src="/img/upload.svg" class="5" id="image-section-5" />
-                  <input type="file" id="file" name="productImages" class="image-five" />
+                  <input type="file" id="file" name="productImages" class="image-five" onchange="previewFileHendler(this, 5)" />
                 </div>
-                <input name="restaurantIid" class="restaurant-id" hidden />
+                <input  name="restaurantIid" class="restaurant-id" hidden />
               </div>
             </div>
 

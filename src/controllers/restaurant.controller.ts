@@ -41,7 +41,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
 restaurantController.processSignup = async (req: AdminRequest, res: Response) => {
     try {
         console.log('processSignup');
-        console.log("req.body:",req.body);
+        console.log("req.body:", req.body);
         const file = req.file; // multer yuklab berib prossessignup yubroryapti va biz req.file ichidan qabul qilyapmiz
         console.log("file:", file)
         if (!file)
@@ -61,7 +61,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
         const message =
             err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
         res.send(
-            `<script> alert("${message}"); window.location.replace('admin/signup') </script>`
+            `<script> alert("${message}"); window.location.replace('/admin/signup') </script>`
         );
     }
 };
@@ -84,7 +84,7 @@ restaurantController.processLogin = async (
         const message =
             err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
         res.send(
-            `<script> alert("${message}"); window.location.replace('admin/login') </script>`
+            `<script> alert("${message}"); window.location.replace('/admin/login') </script>`
         );
     }
 };
