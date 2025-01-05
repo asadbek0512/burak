@@ -161,4 +161,3 @@ restaurantController.verifyRestaurant = (
 };
 
 export default restaurantController;
-

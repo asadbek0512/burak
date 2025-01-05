@@ -227,7 +227,7 @@ function palindromCheck(word: string) {
     return false
 }
 
-console.log(palindromCheck("dad"));
+// console.log(palindromCheck("dad"));
 
 
 // TASK O:
@@ -248,6 +248,30 @@ function calculateSumOfNumbers(raqam: any) {
 }
 
 const result = calculateSumOfNumbers([10, "10", { son: 10 }, false, 35])
-console.log("TASK O:", result);
+// console.log("TASK O:", result);
 
 
+// TASK P:
+// Parametr sifatida yagona object qabul qiladigan function yozing.
+// Qabul qilingan objectni nested array sifatida convert qilib qaytarsin
+// MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
+
+// 1- usul
+function objectToArray(obj: {}) {
+    return Object.entries(obj)
+}
+console.log(objectToArray({ a: 10, b: 20 }));
+
+
+// 2-usul
+function objectToArray7(obj: { [key: string]: any }) {
+    const result: [string, any][] = [];
+    for (let key in obj) {
+        if (key in obj) { 
+            result.push([key, obj[key]]);
+        }
+    }
+    return result;
+}
+
+console.log(objectToArray7({ a: 10, b: 20 }));
