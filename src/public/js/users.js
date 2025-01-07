@@ -9,12 +9,13 @@ $(function () {
             .post("/admin/user/edit", {
                 _id: id,
                 memberStatus: memberStatus,
+                
             })
             .then((response) => {
                 console.log("response:", response);
                 const result = response.data;
 
-                if (response.data) {
+                if (result.data) {
                     $(".member-status").blur();
                 } else alert("User update failed!");
             })

@@ -260,18 +260,52 @@ const result = calculateSumOfNumbers([10, "10", { son: 10 }, false, 35])
 function objectToArray(obj: {}) {
     return Object.entries(obj)
 }
-console.log(objectToArray({ a: 10, b: 20 }));
+// console.log(objectToArray({ a: 10, b: 20 }));
 
 
 // 2-usul
 function objectToArray7(obj: { [key: string]: any }) {
     const result: [string, any][] = [];
     for (let key in obj) {
-        if (key in obj) { 
+        if (key in obj) {
             result.push([key, obj[key]]);
         }
     }
     return result;
 }
 
-console.log(objectToArray7({ a: 10, b: 20 }));
+// console.log(objectToArray7({ a: 10, b: 20 }));
+
+
+// TASK Q:
+// Shunday function yozing, u 2 ta parametrga ega bo'lib
+// birinchisi object, ikkinchisi string bo'lsin.
+// Agar qabul qilinayotgan ikkinchi string, objectning
+// biror bir propertysiga mos kelsa, 'true', aks holda mos kelmasa 'false' qaytarsin.
+// MASALAN: hasProperty({ name: "BMW", model: "M3" }, "model"); return true;
+// Ushbu misolda, 'model' string, objectning propertysiga mos kelganligi uchun 'true' natijani qaytarmoqda
+// MASALAN: hasProperty({ name: "BMW", model: "M3" }, "year"); return false;
+// Ushbu misolda, ikkinchi argument sifatida berilayotgan 'year' objectning
+// propertysida mavjud bo'lmaganligi uchun 'false' natijani qaytarmoqda.
+
+function hasProperty(obj: {}, key: string) {
+    return obj.hasOwnProperty(key);
+
+}
+console.log(hasProperty({ name: "BMW", model: "M3" }, "M3"));
+
+
+function haskey(obj: {}, key:string) {
+    return key in obj;
+}
+console.log(haskey({ name: "BMW", model: "M3" }, "model"));
+
+
+
+
+// hasValu() qiymatini. tekshirish
+function hasValue(obj: {}, value: string){
+    return Object.values(obj).includes(value);
+}
+
+console.log(hasValue({ name: "BMW", model: "M3" }, "M3")); 
