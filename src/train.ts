@@ -292,20 +292,48 @@ function hasProperty(obj: {}, key: string) {
     return obj.hasOwnProperty(key);
 
 }
-console.log(hasProperty({ name: "BMW", model: "M3" }, "M3"));
+// console.log(hasProperty({ name: "BMW", model: "M3" }, "M3"));
 
-
-function haskey(obj: {}, key:string) {
+function haskey(obj: {}, key: string) {
     return key in obj;
 }
-console.log(haskey({ name: "BMW", model: "M3" }, "model"));
-
-
-
+// console.log(haskey({ name: "BMW", model: "M3" }, "model"));
 
 // hasValu() qiymatini. tekshirish
-function hasValue(obj: {}, value: string){
+function hasValue(obj: {}, value: string) {
     return Object.values(obj).includes(value);
 }
+// console.log(hasValue({ name: "BMW", model: "M3" }, "M3")); 
 
-console.log(hasValue({ name: "BMW", model: "M3" }, "M3")); 
+
+// TASK R
+// Shunday function yozing, u string parametrga ega bo'lsin.
+// Agar argument sifatida berilayotgan string, "1 + 2" bo'lsa,
+// string ichidagi sonlarin yig'indisni hisoblab, number holatida qaytarsin
+// MASALAN: calculate("1 + 3"); return 4;
+// 1 + 3 = 4, shu sababli 4 natijani qaytarmoqda.
+
+// Usul 1
+function calculate(str: string) {
+    return eval(str) //eval() funksiyasi JavaScriptda string sifatida yozilgan kodni ishga tushiradi.
+}
+console.log("Usul 1:", calculate("1 + 3"));
+
+//Usul 2
+function calculate2(str: string) {
+    const [a, amal, c] = str.split(/([+\-*/])/);
+    const num1 = Number(a);
+    const num2 = Number(c);
+
+    switch (amal) {
+        case "+":
+            return num1 + num2;
+        case "-":
+            return num1 - num2;
+        case "*":
+            return num1 * num2;
+        case "/":
+            return num1 / num2;
+    }
+}
+console.log("Usul 2:", calculate2("7 - 5"));
