@@ -317,7 +317,7 @@ function hasValue(obj: {}, value: string) {
 function calculate(str: string) {
     return eval(str) //eval() funksiyasi JavaScriptda string sifatida yozilgan kodni ishga tushiradi.
 }
-console.log("Usul 1:", calculate("1 + 3"));
+// console.log("Usul 1:", calculate("1 + 3"));
 
 //Usul 2
 function calculate2(str: string) {
@@ -336,4 +336,36 @@ function calculate2(str: string) {
             return num1 / num2;
     }
 }
-console.log("Usul 2:", calculate2("7 - 5"));
+// console.log("Usul 2:", calculate2("7 - 5"));
+
+// TASK S
+// Shunday function tuzing, u numberlardan tashkil topgan array qabul qilsin
+// va o'sha numberlar orasidagi tushib qolgan sonni topib uni return qilsin.
+// MASALAN: missingNumber([3, 0, 1]); return 2
+// Yuqoridagi misolda, berilayotgan sonlar tarkibini tartiblasak
+// '2' soni tushib qolgan
+
+function missingNumber(a: number[]) {
+    for (let i = 0; i < a.length; i++) {
+        if (a.indexOf(i) == -1) {
+            return i
+        }
+    }
+
+}
+console.log(missingNumber([0, 1, 3,5,8]));
+
+
+
+
+function missingNumber1(a: number[]) {
+    let count: number = a[a.length - 1];
+    let missing: number[] = []
+    for (let i = 0; i < a.length; i++) {
+        if (a.indexOf(i) == -1) {
+            missing.push(i);
+        }
+    }
+    return missing;
+}
+console.log(missingNumber1([0, 1, 3]));
